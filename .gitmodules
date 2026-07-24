@@ -1,0 +1,15 @@
+[submodule "funkin/libs/sdl3"]
+	path = funkin/libs/sdl3
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "funkin/libs/diligent"]
+	path = funkin/libs/diligent
+	url = https://github.com/DiligentGraphics/DiligentEngine
+[submodule "funkin/libs/glm"]
+	path = funkin/libs/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "funkin/libs/miniaudio"]
+	path = funkin/libs/miniaudio
+	url = https://github.com/mackron/miniaudio.git
+[submodule "funkin/libs/clay"]
+	path = funkin/libs/clay
+	url = https://github.com/nicbarker/clay.git
