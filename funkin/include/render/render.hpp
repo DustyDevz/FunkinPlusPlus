@@ -10,6 +10,22 @@
   License: https://www.gnu.org/licenses/agpl-3.0.html
   Project: https://github.com/DustyDevz/FunkinPlusPlus
 */
-#pragma once
 
-#include "log.hpp"
+#pragma once
+#include "render_device.hpp"
+#include "app/window.hpp"
+
+namespace Funkin::Render {
+    class Render {
+    public:
+        bool Init(const App::Window& window, bool vsync = false);
+        void Shutdown();
+        void Resize(uint32_t width, uint32_t height);
+
+        void BeginFrame();
+        void EndFrame();
+
+    private:
+        Device m_device_;
+    };
+}

@@ -14,7 +14,12 @@ set(DILIGENT_NO_WEBGPU ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_ARCHIVER ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_RENDER_STATE_PACKAGER ON CACHE BOOL "" FORCE)
 
+set(SDL_SHARED OFF CACHE BOOL "" FORCE)
+set(SDL_STATIC ON CACHE BOOL "" FORCE)
+
 find_package(Vulkan REQUIRED)
+
+add_subdirectory("funkin/libs/sdl3")
 add_subdirectory("funkin/libs/diligent")
 
 if(MINGW AND TARGET Diligent-Win32Platform)
@@ -35,6 +40,8 @@ set_target_properties(FunkinPlusPlus PROPERTIES
 
 target_compile_definitions(FunkinPlusPlus PRIVATE $<$<CONFIG:DEBUG>:FUNKIN_DEBUG>)
 target_link_libraries(FunkinPlusPlus PRIVATE
+        SDL3::SDL3-static
+        Vulkan::Vulkan
         Diligent-Primitives
         Diligent-Common
         Diligent-GraphicsTools
@@ -53,4 +60,5 @@ target_precompile_headers(FunkinPlusPlus PRIVATE
 
 target_include_directories(FunkinPlusPlus PRIVATE
         "${CMAKE_SOURCE_DIR}/funkin/include"
+        "${CMAKE_SOURCE_DIR}/funkin/libs/sdl3/include"
 )
