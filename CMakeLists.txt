@@ -42,7 +42,6 @@ target_compile_definitions(FunkinPlusPlus PRIVATE $<$<CONFIG:DEBUG>:FUNKIN_DEBUG
 target_link_libraries(FunkinPlusPlus PRIVATE
         SDL3::SDL3-static
         Vulkan::Vulkan
-        Diligent-Imgui
         Diligent-Primitives
         Diligent-Common
         Diligent-GraphicsTools
