@@ -30,7 +30,7 @@ namespace Funkin::Render {
 
         // Imgui
 
-        return m_device_.Init(device_cfg);
+        return true;
     }
 
     void Render::BeginFrame() {

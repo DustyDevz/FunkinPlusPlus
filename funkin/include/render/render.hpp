@@ -12,8 +12,6 @@
 */
 
 #pragma once
-#include <imgui.h>
-#include <ImGuiImplDiligent.hpp>
 #include "render_device.hpp"
 #include "app/window.hpp"
 
@@ -29,6 +27,5 @@ namespace Funkin::Render {
 
     private:
         Device m_device_;
-        std::unique_ptr<Diligent::ImGuiImplDiligent> m_imgui_;
     };
 }
