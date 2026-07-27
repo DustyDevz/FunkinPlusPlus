@@ -13,3 +13,7 @@
 [submodule "funkin/libs/clay"]
 	path = funkin/libs/clay
 	url = https://github.com/nicbarker/clay.git
+[submodule "funkin/libs/imgui"]
+	path = funkin/libs/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking

@@ -23,6 +23,13 @@ namespace Funkin::Render {
             .height = window.Height(),
         };
 
+        if (!m_device_.Init(device_cfg)) {
+            LOG_ERR("Failed to initialize device");
+            return false;
+        }
+
+        // Imgui
+
         return m_device_.Init(device_cfg);
     }
 
