@@ -22,12 +22,6 @@ jobs:
     - name: ninja
       uses: llvm/actions/install-ninja@main
 
-    - name: qt6
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.8.*'
-        arch: 'win64_msvc2022_64'
-
     - name: vulkan
       uses: jakoch/install-vulkan-sdk-action@v1
       with:
