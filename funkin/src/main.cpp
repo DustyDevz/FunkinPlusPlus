@@ -11,30 +11,9 @@
   Project: https://github.com/DustyDevz/FunkinPlusPlus
 */
 
-#include "app/window.hpp"
-#include "render/render.hpp"
+#include <iostream>
 
 int main() {
-    LOG_PRINT("hi");
-
-    Funkin::App::Window window;
-    if (!window.Init("window test", 1280, 720)) {
-        LOG_CRIT("Failed to initialize window");
-        return 1;
-    }
-
-    Funkin::Render::Render renderer;
-    if (!renderer.Init(window)) {
-        LOG_CRIT("Failed to initialized renderer");
-        return 1;
-    }
-
-    while (window.PollEvents()) {
-        renderer.BeginFrame();
-        renderer.EndFrame();
-    }
-
-    renderer.Shutdown();
-    window.Shutdown();
-    return 0;
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
 }
