@@ -36,11 +36,7 @@ file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
         "funkin/src/*.cpp"
         "funkin/include/*.hpp"
 )
-
 add_executable(FunkinPlusPlus ${ENGINE_SOURCES})
-
-file(GLOB IMGUI_SOURCES "funkin/libs/imgui/*.cpp")
-target_sources(FunkinPlusPlus PRIVATE ${IMGUI_SOURCES})
 
 set_target_properties(FunkinPlusPlus PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/export/$<CONFIG>"
@@ -69,5 +65,4 @@ target_precompile_headers(FunkinPlusPlus PRIVATE
 target_include_directories(FunkinPlusPlus PRIVATE
         "${CMAKE_SOURCE_DIR}/funkin/include"
         "${CMAKE_SOURCE_DIR}/funkin/libs/sdl3/include"
-        "${CMAKE_SOURCE_DIR}/funkin/libs/imgui"
 )
