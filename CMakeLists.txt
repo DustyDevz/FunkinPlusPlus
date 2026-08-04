@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 4.2)
 project(FunkinPlusPlus VERSION 0.0.1 LANGUAGES CXX C)
 
+set(FUNKIN_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/export/$<CONFIG>")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FUNKIN_OUTPUT_DIR}")
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(DILIGENT_BUILD_TOOLS ON CACHE BOOL "" FORCE)
 set(DILIGENT_BUILD_FX OFF CACHE BOOL "" FORCE)
@@ -12,7 +16,7 @@ set(DILIGENT_NO_ARCHIVER ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_RENDER_STATE_PACKAGER ON CACHE BOOL "" FORCE)
 
 # Vulkan only
-SET(DILIGENT_NO_DIRECT3D11 ON CACHE BOOL "" FORCE)
+set(DILIGENT_NO_DIRECT3D11 ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_DIRECT3D12 ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_OPENGL ON CACHE BOOL "" FORCE)
 set(DILIGENT_NO_METAL ON CACHE BOOL "" FORCE)
@@ -32,37 +36,5 @@ if(MINGW AND TARGET Diligent-Win32Platform)
     )
 endif()
 
-file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
-        "funkin/src/*.cpp"
-        "funkin/include/*.hpp"
-)
-add_executable(FunkinPlusPlus ${ENGINE_SOURCES})
-
-set_target_properties(FunkinPlusPlus PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/export/$<CONFIG>"
-)
-
-target_compile_definitions(FunkinPlusPlus PRIVATE $<$<CONFIG:DEBUG>:FUNKIN_DEBUG>)
-target_link_libraries(FunkinPlusPlus PRIVATE
-        SDL3::SDL3-static
-        Vulkan::Vulkan
-        Diligent-Primitives
-        Diligent-Common
-        Diligent-GraphicsTools
-        Diligent-GraphicsEngine
-        Diligent-GraphicsEngineVk-static
-)
-
-if(MSVC)
-    set_property(TARGET FunkinPlusPlus APPEND_STRING PROPERTY LINK_FLAGS_RELEASE " /INCREMENTAL:NO /PDBALTPATH:%_PDB%")
-    set_property(TARGET FunkinPlusPlus APPEND_STRING PROPERTY LINK_FLAGS_MINSIZEREL " /INCREMENTAL:NO /PDBALTPATH:%_PDB%")
-endif()
-
-target_precompile_headers(FunkinPlusPlus PRIVATE
-        "${CMAKE_SOURCE_DIR}/funkin/include/utils/pch.hpp"
-)
-
-target_include_directories(FunkinPlusPlus PRIVATE
-        "${CMAKE_SOURCE_DIR}/funkin/include"
-        "${CMAKE_SOURCE_DIR}/funkin/libs/sdl3/include"
-)
+add_subdirectory("funkin/engine")
+add_subdirectory("funkin/game")

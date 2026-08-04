@@ -11,7 +11,18 @@
   Project: https://github.com/DustyDevz/FunkinPlusPlus
 */
 
-int main() {
-    LOG_PRINT("hi");
-    return 0;
+#pragma once
+
+#if defined(_WIN32)
+    #if defined(FunkinEngine_EXPORTS)
+        #define FUNKIN_API __declspec(dllexport)
+    #else
+        #define FUNKIN_API __declspec(dllimport)
+    #endif
+#else
+    #define FUNKIN_API
+#endif
+
+namespace FunkinEngine {
+    FUNKIN_API void init();
 }
